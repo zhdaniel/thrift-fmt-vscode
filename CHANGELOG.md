@@ -4,6 +4,10 @@ All notable changes to the "thrift-formatter" extension will be documented in th
 
 ## [Unreleased]
 
+### Added
+- Add the optional `thriftFormatter.separateBaseFields` setting, disabled by default.
+- Use the modified `thrift-fmt-ts` package directly from `zhdaniel/thrift-fmt-ts#main`.
+
 ## [1.5.0] upgrade thrift-fmt-ts, support align by field's each part - 2023-03-26
 ### Feature
 - upgrade thrift-fmt-ts

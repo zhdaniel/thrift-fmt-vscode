@@ -2,7 +2,7 @@
 
 A Thrift file formatter extention
 
-use https://github.com/thrift-labs/thrift-fmt-ts
+use https://github.com/zhdaniel/thrift-fmt-ts (fork of https://github.com/thrift-labs/thrift-fmt-ts)
 
 (a typescript implement of https://github.com/thrift-labs/thrift-fmt )
 
@@ -16,6 +16,7 @@ unfortunately, it was created with a typo extension name "thirft-formater"
 4. or align by field's assgin part in struct/enum/union/exception
 5. patch the missed list separator
 6. pathc the missed 'required' in field
+7. optionally separate common `Base` / `BaseResp` fields from business fields
 
 ## Requirements
 
@@ -42,6 +43,35 @@ if `true`, will align by field's assgin ('=') part, support field in struct or o
 if `true`, will align by field's each part, support field in struct or others.
 
 if `true`, will ingore the `alignByAssign` option
+
+6. `thriftFormatter.separateBaseFields` boolean, default `false`
+
+When enabled, struct fields matching `Base Base` or `BaseResp BaseResp`
+(including qualified types such as `base.Base`) get one blank line before them.
+Leading comments stay with their field; first or only fields get no leading
+blank line. The rule does not depend on the struct name or field ID.
+
+```json
+{
+  "thriftFormatter.separateBaseFields": true
+}
+```
+
+## Local development
+
+This checkout installs the modified TypeScript formatter directly from
+`github:zhdaniel/thrift-fmt-ts#main`, which includes the optional Base separator
+and the Git installation build hook. npm builds the formatter during
+installation; no adjacent local checkout is needed.
+
+```bash
+npm install
+npm run test-node
+npm run package-web
+```
+
+The formatter is bundled into the extension and needs no Python runtime or
+Git access when the installed extension formats a file.
 
 ## Known Issues
 
